@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.SysUserDao">
+
+    <insert id="register" parameterType="com.example.model.SysUser">
+        INSERT INTO sys_user (user_name, password, user_realname, phone_number, dateof_birth, personal_profile, idcard_no, mail_box, user_avata, create_time)
+        VALUES (#{sysUser.userName}, #{sysUser.passWord}, #{sysUser.userRealname}, #{sysUser.phoneNumber}, #{sysUser.deteofBirth}, #{sysUser.personalProfile}, #{sysUser.idcardNo}, #{sysUser.mailBox}, #{sysUser.userAvate},now())
+    </insert>
+
+    <!--where后面字段名是和数据库字段名保持一致，-->
+    <select id="login" parameterType="java.lang.String"  resultType="com.example.model.SysUser">
+        SELECT * FROM sys_user WHERE user_name= #{username} AND password= #{password}
+    </select>
+
+
+    <select id="findSysUserByName" parameterType="java.lang.String" resultType="com.example.model.SysUser">
+        select * from sys_user where user_name = #{username}
+    </select>
+
+</mapper>

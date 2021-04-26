@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.IBooksDao">
+
+
+    <select id="pageSysBook" resultType="com.example.model.SysBook">
+        select books_id,
+               books_number,
+               books_name,
+               books_category,
+               books_unitprice,
+               create_time,
+               books_cover,
+               books_author
+        from sys_book limit  #{startIndex} , #{pageSize}
+    </select>
+    <select id="countDyInteger" resultType="java.lang.Integer">
+        select count(1) from sys_book
+    </select>
+
+
+    <insert id="addBook"  >
+        INSERT INTO sys_book (books_number, books_name, books_category, books_unitprice,create_time,books_cover,books_author)
+        VALUES (#{sysBook.booksNumber}, #{sysBook.booksName}, #{sysBook.booksCategory}, #{sysBook.booksUnitprice},now(), #{sysBook.booksCover},#{sysBook.booksAuthor})
+    </insert>
+    <update id="updateBooks">
+     UPDATE  sys_book SET books_number =  #{sysBook.booksNumber}, books_name = #{sysBook.booksName}, books_category = #{sysBook.booksCategory},
+      books_unitprice = #{sysBook.booksUnitprice} WHERE books_id = #{sysBook.booksId}
+    </update>
+    <delete id="deleteBooks">
+         DELETE FROM sys_book WHERE books_id = #{booksId}
+    </delete>
+    <select id="select" resultType="com.example.model.SysBook">
+        SELECT * FROM sys_book
+    </select>
+    <select id="getBooksById" resultType="com.example.model.SysBook">
+        SELECT * FROM sys_book WHERE books_id = #{booksId}
+    </select>
+    <select id="findSysUserByName" resultType="com.example.model.SysBook" parameterType="com.example.model.SysBook">
+        select * from sys_book where books_name = #{booksName}
+    </select>
+</mapper>

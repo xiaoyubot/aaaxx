@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: 86132
+Build-Jdk: 11.0.7
+Implementation-Title: demoaa
+Implementation-Version: 2.3.0
+Implementation-Vendor-Id: com.example
+Main-Class: ${start-class}
+
